@@ -65,7 +65,7 @@ jobs:
           DEP_NAME: ran-bp-nginx
           IMAGE_TAG: latest
         with:
-          args: set image deployment/$DHUB_REPOSITORY $DHUB_REPOSITORY=$DHUB_REGISTRY/$DHUB_REPOSITORY:$IMAGE_TAG
+          args: set image deployment/$DEP_NAME $CON_NAME=$DHUB_REGISTRY/$DHUB_IMAGE:$IMAGE_TAG
         
       - name: verify deployment
         uses: kodermax/kubectl-aws-eks@master
