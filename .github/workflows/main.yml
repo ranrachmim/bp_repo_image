@@ -58,8 +58,8 @@ jobs:
       - name: deploy to EKS cluster
         uses: kodermax/kubectl-aws-eks@master
         env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA_STAGING }}
-          DHUB_REGISTRY: ${{ steps.login_dhub.outputs.registry }}
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+          DHUB_REGISTRY: ranra96
           DHUB_IMAGE: bp_nginx_ran
           CON_NAME: bp-nginx
           DEP_NAME: ran-bp-nginx
