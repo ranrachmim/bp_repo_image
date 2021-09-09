@@ -11,19 +11,22 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
-    # The type of runner that the job will run on
+  on-success:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      
-      - name: HTML Preview
-      # You may pin to the exact commit or the version.
-      # uses: pavi2410/html-preview-action@9420cd81fbbe0035f59a39536ea5a0443daffa37
-        uses: pavi2410/html-preview-action@v2
-        with:
-          # The HTML file you want to preview, relative to the root of the repo
-          html_file: "./data/index.html"
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Build succeed
+          echo continuing to the deploy phase
+  
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Build failed
+          echo stopping the porcess
